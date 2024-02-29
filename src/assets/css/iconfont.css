@@ -1,0 +1,91 @@
+@font-face {
+  font-family: "iconfont";
+  src: url('../font/iconfont.woff2?t=1704811817327') format('woff2'),
+       url('../font/iconfont.woff?t=1704811817327') format('woff'),
+       url('../font/iconfont.ttf?t=1704811817327') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 18px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-top:before {
+  content: "\e63d";
+}
+
+.icon-menu-close:before {
+  content: "\ec06";
+}
+
+.icon-menu-open:before {
+  content: "\e613";
+}
+
+.icon-nodata:before {
+  content: "\e643";
+}
+
+.icon-user:before {
+  content: "\e644";
+}
+
+.icon-delete:before {
+  content: "\e610";
+}
+
+.icon-search:before {
+  content: "\e616";
+}
+
+.icon-screen:before {
+  content: "\e617";
+}
+
+.icon-text:before {
+  content: "\e619";
+}
+
+.icon-set:before {
+  content: "\e61a";
+}
+
+.icon-list:before {
+  content: "\e61b";
+}
+
+.icon-copy:before {
+  content: "\e61c";
+}
+
+.icon-grid:before {
+  content: "\e61d";
+}
+
+.icon-file:before {
+  content: "\e61f";
+}
+
+.icon-bookmark:before {
+  content: "\e628";
+}
+
+.icon-time:before {
+  content: "\e633";
+}
+
+.icon-date:before {
+  content: "\e635";
+}
+
+.icon-pic:before {
+  content: "\e63c";
+}
+
+.icon-link:before {
+  content: "\e63f";
+}
+
