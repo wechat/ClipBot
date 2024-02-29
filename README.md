@@ -29,17 +29,24 @@ Clipbot是一个复制粘贴历史管理工具。将您复制到系统剪贴板�
 Tauri、Vite 、Vue3、Ts、Pinia、IndexDB、Rust
 
 ### Dependent version
+```shell
 rustc 1.76.0
+```
 
 ### Project Setup
+```shell
 pnpm install
+```
 
 ### Run Project
+```shell
 pnpm tauri dev
+```
 
 ### Run Project
+```shell
 pnpm tauri build
-
+```
 
 [Download the APP](https://github.com/wechat/ClipBot/releases)
 
