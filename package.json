@@ -10,7 +10,9 @@
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
-    "tauri": "tauri"
+    "tauri": "tauri",
+    "updater": "node scripts/update.mjs",
+    "release": "node scripts/release.mjs"
   },
   "repository": {
     "type": "git",
@@ -25,11 +27,13 @@
     "@arco-design/web-vue": "^2.54.5",
     "@tauri-apps/api": "^1.5.3",
     "dayjs": "^1.11.10",
+    "node-fetch": "^3.3.2",
     "pinia": "^2.1.7",
     "tauri-plugin-clipboard-api": "^0.5.5",
     "vue": "^3.4.21"
   },
   "devDependencies": {
+    "@actions/github": "^6.0.0",
     "@tauri-apps/cli": "^1.5.10",
     "@vitejs/plugin-vue": "^4.6.2",
     "sass": "^1.71.1",

@@ -39,7 +39,7 @@
     },
     "bundle": {
       "active": true,
-      "targets": "all",
+      "targets": ["dmg", "updater"],
       "identifier": "com.clipbot.build",
       "icon": [
         "icons/32x32.png",
@@ -75,8 +75,10 @@
     "updater": {
       "active": true,
       "dialog": true,
-      "endpoints": ["https://wechat.github.io/ClipBot/install.json"],
-      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDNGNzVBM0U2NTMzREM5QTAKUldTZ3lUMVQ1cU4xUDg1RzVFTE5uV3hsWHd1aEtYQndReldTNTcxVllBZVp3K2taWm9sZERwdS8K"
+      "endpoints": [
+        "https://wechat.github.io/ClipBot/install.json"
+      ],
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDFBOEJBQUJGMjBGQUU1RDcKUldUWDVmb2d2NnFMR3JsUWxBQjN1eWgrNlJhUFRFWWk0akxBTllTZ001d2w1Z3FEam1IY2FvS1MK"
     }
   }
 }
