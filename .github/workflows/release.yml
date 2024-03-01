@@ -1,5 +1,4 @@
 name: "publish"
-
 on:
   push:
     #   tags:
@@ -8,7 +7,6 @@ on:
   workflow_dispatch:
 
 env:
-  VITE_SENTRY_DSN: ${{ vars.VITE_SENTRY_DSN }}
   TAURI_PRIVATE_KEY: ${{ secrets.TAURI_PRIVATE_KEY }}
   TAURI_KEY_PASSWORD: ${{ secrets.TAURI_KEY_PASSWORD }}
 
@@ -19,16 +17,12 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        include:
-          - os: macos-latest
-            target: aarch64-apple-darwin
-          - os: macos-latest
-            target: x86_64-apple-darwin
-    runs-on: ${{ matrix.os }}
+        platform: [macos-latest]
+    runs-on: ${{ matrix.platform }}
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
       - name: Rust setup
         uses: dtolnay/rust-toolchain@stable
@@ -38,18 +32,15 @@ jobs:
         with:
           workspaces: "./src-tauri -> target"
 
-      - if: matrix.target
-        run: rustup target add ${{ matrix.target }}
+      - name: Sync node version and setup cache
+        uses: actions/setup-node@v3
+        with:
+          node-version: "lts/*"
+          cache: "yarn" # Set this to npm, yarn or pnpm.
 
-      - uses: oven-sh/setup-bun@v1
-        with:
-          bun-version: latest
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: 8
       - name: Install frontend dependencies
-        run: bun install
+        # If you don't have `beforeBuildCommand` configured you may want to build your frontend here too.
+        run: yarn install # Change this to npm, yarn or pnpm.
 
       - name: Build the app
         uses: tauri-apps/tauri-action@v0
@@ -62,10 +53,8 @@ jobs:
           APPLE_PASSWORD: ${{ secrets.APPLE_PASSWORD }}
           APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
         with:
-          tagName: app-v__VERSION__
+          tagName: app-v__VERSION__ # the action automatically replaces \_\_VERSION\_\_ with the app version
           releaseName: "App v__VERSION__"
           releaseBody: "See the assets to download this version and install."
           releaseDraft: true
           prerelease: false
-          args: ${{ matrix.target && format('--target {0}', matrix.target) }}
-          tauriScript: bun run tauri
