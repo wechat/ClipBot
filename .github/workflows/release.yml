@@ -2,8 +2,6 @@ name: "publish"
 
 on:
   push:
-    #   tags:
-    #     - 'v*'
     branches:
       - main
 
@@ -27,9 +25,7 @@ jobs:
           node-version: 20
 
       - name: setup pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: 8
+        run: npm install -g pnpm
 
       - name: Rust setup
         uses: dtolnay/rust-toolchain@stable
