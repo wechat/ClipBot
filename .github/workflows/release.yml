@@ -6,10 +6,6 @@ on:
     branches: ["main"]
   workflow_dispatch:
 
-env:
-  TAURI_PRIVATE_KEY: ${{ secrets.TAURI_PRIVATE_KEY }}
-  TAURI_KEY_PASSWORD: ${{ secrets.TAURI_KEY_PASSWORD }}
-
 jobs:
   publish-tauri:
     permissions:
@@ -32,26 +28,27 @@ jobs:
         with:
           workspaces: "./src-tauri -> target"
 
+      - name: setup pnpm
+        uses: pnpm/action-setup@v2.2.1
+        with:
+          version: 8
+
       - name: Sync node version and setup cache
         uses: actions/setup-node@v3
         with:
           node-version: "lts/*"
-          cache: "yarn" # Set this to npm, yarn or pnpm.
+          cache: "pnpm" # Set this to npm, yarn or pnpm.
 
       - name: Install frontend dependencies
         # If you don't have `beforeBuildCommand` configured you may want to build your frontend here too.
-        run: yarn install # Change this to npm, yarn or pnpm.
+        run: pnpm install # Change this to npm, yarn or pnpm.
 
       - name: Build the app
         uses: tauri-apps/tauri-action@v0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          APPLE_CERTIFICATE: ${{ secrets.APPLE_CERTIFICATE }}
-          APPLE_CERTIFICATE_PASSWORD: ${{ secrets.APPLE_CERTIFICATE_PASSWORD }}
-          APPLE_SIGNING_IDENTITY: ${{ secrets.APPLE_SIGNING_IDENTITY }}
-          APPLE_ID: ${{ secrets.APPLE_ID }}
-          APPLE_PASSWORD: ${{ secrets.APPLE_PASSWORD }}
-          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+          TAURI_PRIVATE_KEY: ${{ secrets.TAURI_PRIVATE_KEY }}
+          TAURI_KEY_PASSWORD: ${{ secrets.TAURI_KEY_PASSWORD }}  
         with:
           tagName: app-v__VERSION__ # the action automatically replaces \_\_VERSION\_\_ with the app version
           releaseName: "App v__VERSION__"
