@@ -156,7 +156,7 @@ const getDataByKey = (db: IDBDatabase, storeName: string, key: number) => {
       const arr: IResultData[] = [];
       if (request.result?.length) {
         request.result.map((item: IResultData) => {
-          if (isGreaterDay(item.createtime, 30)) {
+          if (isGreaterDay(item.createtime, 7)) {
             deleteDB(db, storeName, item.id!);
           } else {
             arr.push(item);
