@@ -10,9 +10,7 @@
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
-    "tauri": "tauri",
-    "updater": "node scripts/update.mjs",
-    "release": "node scripts/release.mjs"
+    "tauri": "tauri"
   },
   "repository": {
     "type": "git",
