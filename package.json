@@ -1,7 +1,7 @@
 {
   "name": "clipbot",
   "private": true,
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "An easy-to-use clipboard manager tool.",
   "author": "wechats@163.com",
   "license": "MIT",
