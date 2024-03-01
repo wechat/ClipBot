@@ -44,7 +44,10 @@ jobs:
       - uses: oven-sh/setup-bun@v1
         with:
           bun-version: latest
-
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
       - name: Install frontend dependencies
         run: bun install
 
