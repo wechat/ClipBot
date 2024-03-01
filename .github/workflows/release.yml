@@ -1,10 +1,11 @@
 name: "publish"
+
 on:
   push:
     #   tags:
     #     - 'v*'
-    branches: ["main"]
-  workflow_dispatch:
+    branches:
+      - main
 
 jobs:
   publish-tauri:
@@ -18,7 +19,17 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+
+      - name: setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
 
       - name: Rust setup
         uses: dtolnay/rust-toolchain@stable
@@ -28,19 +39,7 @@ jobs:
         with:
           workspaces: "./src-tauri -> target"
 
-      - name: setup pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: 8
-
-      - name: Sync node version and setup cache
-        uses: actions/setup-node@v3
-        with:
-          node-version: "lts/*"
-          cache: "pnpm" # Set this to npm, yarn or pnpm.
-
       - name: Install frontend dependencies
-        # If you don't have `beforeBuildCommand` configured you may want to build your frontend here too.
         run: pnpm install # Change this to npm, yarn or pnpm.
 
       - name: Build the app
